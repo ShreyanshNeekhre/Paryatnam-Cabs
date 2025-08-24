@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Paryatnam Cabs" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta
+      name="description"
+      content="Paryatnam Cabs - Premium cab booking service with real-time location search and route mapping"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>Paryatnam Cabs</title>
+    
+    <!-- Google Maps API Script with Directions Service -->
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCW5bBn1b5v8lVJe_Oe3YauGd9QRlPOsIk&libraries=places,geometry">
+    </script>
+    
+    <!-- Remove unwanted elements script -->
+    <script>
+      // Function to remove unwanted elements
+      function removeUnwantedElements() {
+        // Remove flonnect elements
+        const flonnectElements = document.querySelectorAll('[class*="flonnect"], [id*="flonnect"], [data-testid*="flonnect"]');
+        flonnectElements.forEach(el => el.remove());
+        
+        // Remove floating tabs and overlays
+        const unwantedElements = document.querySelectorAll('.floating-tab, .floating-overlay, .chat-widget, .support-widget, [class*="widget"], [class*="chat"], [class*="support"], [class*="floating"]');
+        unwantedElements.forEach(el => el.remove());
+        
+        // Remove unwanted iframes (except Google Maps)
+        const iframes = document.querySelectorAll('iframe');
+        iframes.forEach(iframe => {
+          const src = iframe.src || '';
+          if (src && !src.includes('maps.googleapis.com') && !src.includes('google.com')) {
+            iframe.remove();
+          }
+        });
+      }
+      
+      // Run on page load
+      document.addEventListener('DOMContentLoaded', removeUnwantedElements);
+      
+      // Run periodically to catch dynamically added elements
+      setInterval(removeUnwantedElements, 1000);
+      
+      // Run when new elements are added
+      const observer = new MutationObserver(removeUnwantedElements);
+      observer.observe(document.body, { childList: true, subtree: true });
+    </script>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('SW registered: ', registration);
+            })
+            .catch((registrationError) => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
+  </body>
+</html> 

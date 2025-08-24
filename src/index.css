@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Hide unwanted elements like flonnect tabs */
+[class*="flonnect"],
+[id*="flonnect"],
+[data-testid*="flonnect"],
+iframe[src*="flonnect"],
+div[class*="flonnect"],
+span[class*="flonnect"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+  top: -9999px !important;
+  z-index: -9999 !important;
+}
+
+/* Hide any floating tabs or overlays */
+.floating-tab,
+.floating-overlay,
+.chat-widget,
+.support-widget,
+[class*="widget"],
+[class*="chat"],
+[class*="support"],
+[class*="floating"] {
+  display: none !important;
+}
+
+/* Ensure your app takes full priority */
+#root {
+  z-index: 9999 !important;
+  position: relative !important;
+}
+
+/* Hide any external scripts or iframes */
+iframe:not([src*="maps.googleapis.com"]):not([src*="google.com"]) {
+  display: none !important;
+}
+
+/* Additional cleanup for any unwanted elements */
+[style*="position: fixed"][style*="z-index"]:not([class*="react"]):not([id*="react"]) {
+  display: none !important;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #0f172a;
+  color: white;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Smooth transitions */
+* {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Focus styles */
+input:focus {
+  outline: none;
+  ring: 2px;
+  ring-color: #0ea5e9;
+} 
