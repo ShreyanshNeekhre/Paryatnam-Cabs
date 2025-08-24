@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Navigation, ArrowLeft, CheckCircle } from "lucide-react";
+import { Navigation, ArrowLeft, CheckCircle } from "lucide-react";
 import { LocationSuggestion } from "../types/location";
 
 interface PickupConfirmationProps {
@@ -248,7 +248,7 @@ const PickupConfirmation: React.FC<PickupConfirmationProps> = ({
         setIsLoading(false);
       }, 10000);
     }
-  }, [pickup, isMobile]);
+  }, [pickup, isMobile, blackThemeMapStyles]);
 
   const formatDate = (date: Date) => {
     return date.toLocaleDateString('en-US', { 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, Car, Users, Star, Check } from "lucide-react";
+import { ArrowLeft, Users, Star, Check } from "lucide-react";
 
 interface RentalCar {
   id: string;

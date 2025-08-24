@@ -31,9 +31,6 @@ const RouteMap: React.FC<RouteMapProps> = ({
   onRouteCalculated 
 }) => {
   const mapRef = useRef<HTMLDivElement>(null);
-  const [map, setMap] = useState<any>(null);
-  const [directionsService, setDirectionsService] = useState<any>(null);
-  const [directionsRenderer, setDirectionsRenderer] = useState<any>(null);
   const [routeInfo, setRouteInfo] = useState<{
     distance: string;
     duration: string;
@@ -178,9 +175,7 @@ const RouteMap: React.FC<RouteMapProps> = ({
           }
         });
 
-        setMap(mapInstance);
-        setDirectionsService(directionsServiceInstance);
-        setDirectionsRenderer(directionsRendererInstance);
+
         calculateRoute(directionsServiceInstance, directionsRendererInstance);
       } catch (error) {
         console.error('Error initializing Google Maps:', error);

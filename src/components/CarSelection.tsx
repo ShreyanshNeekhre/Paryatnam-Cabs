@@ -97,10 +97,7 @@ const CarSelection: React.FC<CarSelectionProps> = ({
     ];
   }, [distance]);
 
-  // Function to calculate fare for any car type
-  const calculateFare = (baseFare: number, perKmRate: number) => {
-    return Math.round(baseFare + distance * perKmRate);
-  };
+
 
   const handleCarSelect = (carType: CarType) => {
     setSelectedCar(carType.id);

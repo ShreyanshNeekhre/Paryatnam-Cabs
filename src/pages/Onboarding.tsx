@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Bell, 
   MapPin, 
-  Phone, 
   User, 
   Car, 
   Shield, 
@@ -26,7 +25,7 @@ const Onboarding: React.FC<OnboardingProps> = ({ onComplete }) => {
   const [locationEnabled, setLocationEnabled] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [userType, setUserType] = useState<'customer' | 'driver' | 'admin' | null>(null);
-  const navigate = useNavigate();
+
 
   const steps = [
     {
@@ -120,7 +119,7 @@ const Onboarding: React.FC<OnboardingProps> = ({ onComplete }) => {
 
   const requestLocation = async () => {
     try {
-      const position = await navigator.geolocation.getCurrentPosition(
+      await navigator.geolocation.getCurrentPosition(
         () => setLocationEnabled(true),
         () => setLocationEnabled(false)
       );

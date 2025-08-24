@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { User } from "../entities/User";
-import Button from "../components/ui/button";
-import { ArrowRight, Send, Car, Globe, Package, Plane, Clock } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Send, Car, Globe, Package, Plane, Clock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import Button from "../components/ui/button";
 import BottomNavigation from "../components/BottomNavigation";
-import LocationDropdown from "../components/LocationDropdown";
 import MultiDestinationInput from "../components/MultiDestinationInput";
 import RouteMap from "../components/RouteMap";
 import CarSelection from "../components/CarSelection";
 import ScheduleSelection from "../components/ScheduleSelection";
 import Onboarding from "./Onboarding";
 import Login from "../components/Auth/Login";
-import { LocationSuggestion, MultiDestinationRoute } from "../types/location";
+import { LocationSuggestion } from "../types/location";
 import userService, { User as UserType } from "../services/userService";
 import RideDetails from "../components/RideDetails";
 import PickupConfirmation from "../components/PickupConfirmation";
@@ -66,8 +64,7 @@ const Dashboard: React.FC = () => {
   const [selectedPickup, setSelectedPickup] = useState<LocationSuggestion | null>(null);
   const [selectedDestination, setSelectedDestination] = useState<LocationSuggestion | null>(null);
   const [stops, setStops] = useState<LocationSuggestion[]>([]);
-  const [pickupDropdownOpen, setPickupDropdownOpen] = useState(false);
-  const [destinationDropdownOpen, setDestinationDropdownOpen] = useState(false);
+
   const [selectedCar, setSelectedCar] = useState<CarType | null>(null);
   const [routeInfo, setRouteInfo] = useState<{
     distance: string;
@@ -79,7 +76,7 @@ const Dashboard: React.FC = () => {
   const [rentalStartDate, setRentalStartDate] = useState<Date | null>(null);
   const [rentalEndDate, setRentalEndDate] = useState<Date | null>(null);
   const [selectedRentalCar, setSelectedRentalCar] = useState<RentalCar | null>(null);
-  const [isRentalFlow, setIsRentalFlow] = useState(false);
+
   
   const navigate = useNavigate();
 
@@ -136,17 +133,7 @@ const Dashboard: React.FC = () => {
     localStorage.setItem('currentUser', JSON.stringify(userData));
   };
 
-  const handlePickupSelect = (location: LocationSuggestion) => {
-    setSelectedPickup(location);
-    setPickup(location.name);
-    setPickupDropdownOpen(false);
-  };
 
-  const handleDestinationSelect = (location: LocationSuggestion) => {
-    setSelectedDestination(location);
-    setDestination(location.name);
-    setDestinationDropdownOpen(false);
-  };
 
   const handlePickupChange = (location: LocationSuggestion) => {
     setSelectedPickup(location);
@@ -310,7 +297,7 @@ const Dashboard: React.FC = () => {
     setRentalStartDate(null);
     setRentalEndDate(null);
     setSelectedRentalCar(null);
-    setIsRentalFlow(false);
+
   };
 
   const handleBackToSchedule = () => {

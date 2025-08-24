@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { User, Phone, Star, Car, MapPin, Clock, CheckCircle, Shield } from "lucide-react";
+import { User, Phone, Star, Car, CheckCircle, Shield } from "lucide-react";
 
 interface DriverDetailsProps {
   onDone: () => void;
