@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Car, Navigation, Clock, MapPin } from "lucide-react";
 import { LocationSuggestion } from "../types/location";

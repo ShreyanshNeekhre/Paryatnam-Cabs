@@ -282,7 +282,7 @@ const PickupConfirmation: React.FC<PickupConfirmationProps> = ({
     return `Pickup in ${minutes} minutes`;
   };
 
-  const calculateNewRoute = async (newPickupLocation: LocationSuggestion) => {
+  const calculateNewRoute = useCallback(async (newPickupLocation: LocationSuggestion) => {
     if (!destination || !window.google || !window.google.maps) return;
     
     try {
@@ -360,7 +360,7 @@ const PickupConfirmation: React.FC<PickupConfirmationProps> = ({
     } catch (error) {
       console.error('Error calculating new route:', error);
     }
-  };
+  }, [destination, stops, carType, onPickupLocationUpdate, map, pickupMarker]);
 
   const handleMarkerDragEnd = useCallback((marker: any) => {
     const position = marker.getPosition();
