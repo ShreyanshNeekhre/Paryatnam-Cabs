@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Car, Navigation, Clock, MapPin } from "lucide-react";
 import { LocationSuggestion } from "../types/location";
@@ -200,7 +200,7 @@ const RouteMap: React.FC<RouteMapProps> = ({
     }
   }, [pickup, destination, stops, isMobile, blackThemeMapStyles]);
 
-  const calculateRoute = async (service: any, renderer: any) => {
+  const calculateRoute = useCallback(async (service: any, renderer: any) => {
     if (!service || !renderer || !pickup || !destination) return;
     try {
       setIsLoading(true);
@@ -271,7 +271,7 @@ const RouteMap: React.FC<RouteMapProps> = ({
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [pickup, destination, stops, onRouteCalculated]);
 
   return (
     <div className="relative bg-dark-700 rounded-lg overflow-hidden" style={{ minHeight: '100vh' }}>
