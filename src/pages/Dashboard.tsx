@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, Car, Globe, Package, Plane, Clock } from "lucide-react";
+import { Send, Car, Globe, Plane, Clock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/ui/button";
 import BottomNavigation from "../components/BottomNavigation";
@@ -78,7 +78,7 @@ const Dashboard: React.FC = () => {
   const [selectedRentalCar, setSelectedRentalCar] = useState<RentalCar | null>(null);
 
   
-  const navigate = useNavigate();
+
 
   const serviceTabs: ServiceTab[] = [
     {

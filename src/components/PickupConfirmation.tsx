@@ -282,30 +282,6 @@ const PickupConfirmation: React.FC<PickupConfirmationProps> = ({
     return `Pickup in ${minutes} minutes`;
   };
 
-  const handleMarkerDragEnd = (marker: any) => {
-    const position = marker.getPosition();
-    const geocoder = new window.google.maps.Geocoder();
-    
-    geocoder.geocode({ location: position }, (results: any, status: any) => {
-      if (status === 'OK' && results[0]) {
-        const newLocation: LocationSuggestion = {
-          id: `pickup-${Date.now()}`,
-          name: results[0].formatted_address,
-          address: results[0].formatted_address,
-          type: 'google',
-          placeId: results[0].place_id,
-          coordinates: {
-            lat: position.lat(),
-            lng: position.lng()
-          }
-        };
-        
-        // Calculate new route with updated pickup location
-        calculateNewRoute(newLocation);
-      }
-    });
-  };
-
   const calculateNewRoute = async (newPickupLocation: LocationSuggestion) => {
     if (!destination || !window.google || !window.google.maps) return;
     
@@ -385,6 +361,30 @@ const PickupConfirmation: React.FC<PickupConfirmationProps> = ({
       console.error('Error calculating new route:', error);
     }
   };
+
+  const handleMarkerDragEnd = useCallback((marker: any) => {
+    const position = marker.getPosition();
+    const geocoder = new window.google.maps.Geocoder();
+    
+    geocoder.geocode({ location: position }, (results: any, status: any) => {
+      if (status === 'OK' && results[0]) {
+        const newLocation: LocationSuggestion = {
+          id: `pickup-${Date.now()}`,
+          name: results[0].formatted_address,
+          address: results[0].formatted_address,
+          type: 'google',
+          placeId: results[0].place_id,
+          coordinates: {
+            lat: position.lat(),
+            lng: position.lng()
+          }
+        };
+        
+        // Calculate new route with updated pickup location
+        calculateNewRoute(newLocation);
+      }
+    });
+  }, [calculateNewRoute]);
 
   return (
     <motion.div

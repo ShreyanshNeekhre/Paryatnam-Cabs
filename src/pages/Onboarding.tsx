@@ -12,7 +12,7 @@ import {
   Settings,
   Heart
 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+
 
 interface OnboardingProps {
   onComplete: () => void;

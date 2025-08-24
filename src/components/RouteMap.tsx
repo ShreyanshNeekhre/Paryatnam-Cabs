@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Car, Navigation, Clock, MapPin } from "lucide-react";
 import { LocationSuggestion } from "../types/location";
@@ -198,7 +198,7 @@ const RouteMap: React.FC<RouteMapProps> = ({
         setIsLoading(false);
       }, 10000);
     }
-  }, [pickup, destination, stops, isMobile]);
+  }, [pickup, destination, stops, isMobile, blackThemeMapStyles]);
 
   const calculateRoute = async (service: any, renderer: any) => {
     if (!service || !renderer || !pickup || !destination) return;
